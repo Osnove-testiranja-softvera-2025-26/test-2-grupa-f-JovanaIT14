@@ -1,0 +1,14 @@
+﻿distanceFromBeach: 0, 250, 500, 501, 1000, 1500, 1600
+percentOfPositiveReviews: 0, 35, 70, 71, 75, 80, 81, 90, 100
+apartmentType: Studio,BedOnly, StudioWithTerrace
+renovatedInTheLastYear: true, false
+apartmentRank: First, Second, Third, Forth
+
+IF ([apartmentType] = "Studio" AND [percentOfPositiveReviews] > 80 AND [distanceFromBeach] <= 500 AND [renovatedInTheLastYear] = "true") THEN [apartmentRank] = "First";
+IF ([apartmentType] = "Studio" AND [percentOfPositiveReviews] > 80 AND [distanceFromBeach] <= 500 AND [renovatedInTheLastYear] = "false") THEN [apartmentRank] = "Second";
+IF ([apartmentType] = "Studio" AND ([percentOfPositiveReviews] <= 80 OR [distanceFromBeach] > 500) ) THEN [apartmentRank] = "Third";
+
+IF ([apartmentType] = "StudioWithTerrace" AND ([percentOfPositiveReviews] <= 70 OR [distanceFromBeach] > 1500) ) THEN [apartmentRank] = "Second";
+IF ([apartmentType] = "StudioWithTerrace" AND [percentOfPositiveReviews] > 70 AND [distanceFromBeach] <= 1500 ) THEN [apartmentRank] = "First";
+
+IF ([apartmentType] = "BedOnly" )  THEN [apartmentRank] = "Forth";
